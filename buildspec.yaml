@@ -1,0 +1,37 @@
+version: 0.2
+
+
+phases:
+  install:
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+   # runtime-versions:
+   #    nodejs: 14
+      # name: version
+    commands:
+  #     - unzip Invoice-builder-frontend.zip
+  #      - npm install 
+  pre_build:
+    commands:
+       - npm install
+      # - command
+  build:
+    commands:
+       - npm run build
+      # - command
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - pwd
+      - ls -al
+      #- cp -r build staging
+artifacts:
+  files:
+    - dist/**/*
+    - install_dependencies.sh
+    - appspec.yaml
+    - src/**/*
+    - e2e/**/*
+    - protractor.conf.js
+    - tsconfig.json
+    - tslint.json
